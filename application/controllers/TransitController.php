@@ -2,6 +2,9 @@
 
 class TransitController extends CI_Controller{
     
+    private $statusCode;
+    private $resultMessage;
+    
     public function index(){
         $this->load->model('TransitModel');
         $arguments = new stdClass();
@@ -13,12 +16,19 @@ class TransitController extends CI_Controller{
         $this->output->set_content_type('application/json');
         try{
             if($this->TransitModel->insert($TransitObject)){
-                $this->output->set_output(json_encode(array('status' => '200', 'result' => 'ok')));
+                $this->statusCode = 200;
+                $this->resultMessage('insert OK');
+                //$this->output->set_output(json_encode(array('status' => '200', 'result' => 'ok')));
             } else {
-                $this->output->set_output(json_encode(array('status' => '410', 'result' => 'update failed')));
+                $this->statusCode = 410;
+                $this->resultMessage('update failed');
+                //$this->output->set_output(json_encode(array('status' => '410', 'result' => 'update failed')));
             }
         } catch (Exception $ex) {
-            $this->output->set_output(json_encode(array('status' => '410', 'result' => 'database exception!')));
+            $this->statusCode = 410;
+            $this->resultMessage = 'Database exception: Code:'.$ex->getCode().' Message:'.$ex->getMessage();
+        } finally {
+            $this->output->set_output(json_encode(array('status' => $this->statusCode, 'result' => $this->resultMessage)));
         }
     }
 }
