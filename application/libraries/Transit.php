@@ -40,18 +40,30 @@ class Transit{
     }
 
     function setSourceAdr($sourceAdr) {
+        if($sourceAdr == null){
+            throw new Exception('Transit::sourceAdr cannot be null');
+        }
         $this->sourceAdr = $sourceAdr;
     }
 
     function setDestinationAdr($destinationAdr) {
+        if($destinationAdr == null){
+            throw new Exception('Transit::destinationAdr cannot be null');
+        }
         $this->destinationAdr = $destinationAdr;
     }
 
     function setPrice($price) {
+        if($price == null){
+            throw new Exception('Transit::price cannot be null');
+        }
         $this->price = $price;
     }
 
     function setDate($date) {
+        if($date == null){
+            throw new Exception('Transit::date cannot be null');
+        }
         $this->date = $date;
     }
 

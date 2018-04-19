@@ -11,7 +11,7 @@ class TransitModel extends CI_Model{
     }
     
     public function insert(Transit $object){
-        $this->db->set($object);
+        $this->db->set($this->returnPropertiesArray($object));
         $result = $this->db->insert('Transit');
         $this->Exceptions->checkForError();
         return $result;
