@@ -10,7 +10,7 @@ class Transit{
     private $price;
     private $date;
     
-    public function __construct($object){
+    public function __construct($object = null){
         $this->constructWithArgs($object);
     }
     
