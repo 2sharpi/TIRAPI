@@ -1,16 +1,17 @@
 <?php
-require_once APPPATH.  'traits/ObjectConstructor.php';
+
 
 class TransitModel extends CI_Model{
-    use ObjectConstructor;
     
-    public function __construct($object){
+    
+    public function __construct(){
         parent::__construct();
         $this->load->library('Transit');
-        $this->constructWithArgs($object);
+        
     }
     
-    public function select(Transit $object){
+    public function insert(Transit $object){
+        return $this->db->insert('Transit',object);
         
     }
     

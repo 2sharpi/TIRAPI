@@ -1,11 +1,18 @@
 <?php
+require_once APPPATH.  'traits/ObjectConstructor.php';
 
 class Transit{
+    use ObjectConstructor;
+    
     private $idTransit;
     private $sourceAdr;
     private $destinationAdr;  //Adr = adres
     private $price;
     private $date;
+    
+    public function __construct($object){
+        $this->constructWithArgs($object);
+    }
     
     function getIdTransit() {
         return $this->idTransit;
