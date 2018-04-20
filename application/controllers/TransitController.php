@@ -31,7 +31,7 @@ class TransitController extends MY_Controller {
                 $this->statusCode = 410;
                 $this->resultMessage = array('message' => 'Database exception:'.$ex->getMessage(),'Error_Code' => $ex->getCode());
             }
-        } catch (CiError $ex) {
+        } catch (Exception $ex) {
             $this->statusCode = 410;
             $this->resultMessage = array('message' => $ex->getMessage());
         } finally {
